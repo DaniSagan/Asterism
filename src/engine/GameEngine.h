@@ -12,6 +12,7 @@
 
 #include "actions/actions.h"
 #include "GameState.h"
+#include "states/SplashState.h"
 #include "states/StartState.h"
 #include "states/PlayState.h"
 #include "states/EditorState.h"
@@ -39,6 +40,7 @@ protected:
 	sf::RenderWindow window;
 	GameState* lpState;
 
+	SplashState splashState;
 	StartState startState;
 	PlayState playState;
 	EditorState editorState;

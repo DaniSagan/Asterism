@@ -45,5 +45,18 @@ T foldl(Function fn, T initValue, const std::vector<U>& v)
 	return res;
 }
 
+template <class T, class Function>
+std::vector<T> createVector(size_t size, Function fillerFn)
+{
+	std::vector<T> res(size);
+	int count = 0;
+	for(T& item: res)
+	{
+		item = fillerFn(count);
+		++count;
+	}
+	return res;
+}
+
 
 #endif /* ENGINE_DATA_FUNCTIONALUTILS_H_ */

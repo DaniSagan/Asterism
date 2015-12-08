@@ -23,6 +23,7 @@ public:
 	void load();
 
 	const sf::Font& getFont() const;
+	const sf::Font& getLightFont() const;
 	const sf::Texture& getShipTexture() const;
 	const sf::Texture& getShip2Texture() const;
 	const sf::Texture& getBgTexture() const;
@@ -30,6 +31,7 @@ public:
 
 protected:
 	sf::Font font;
+	sf::Font lightFont;
 	sf::Texture shipTexture;
 	sf::Texture ship2Texture;
 	sf::Texture bgTexture;

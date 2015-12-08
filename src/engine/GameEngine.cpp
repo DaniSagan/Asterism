@@ -27,7 +27,8 @@ GameEngine::~GameEngine()
 
 void GameEngine::run()
 {
-	changeState(&startState);
+	changeState(&splashState);
+	subscribe(&splashState);
 	subscribe(&startState);
 	subscribe(&playState);
 	subscribe(&editorState);
@@ -66,7 +67,14 @@ void GameEngine::changeState(GameState* newState)
 void GameEngine::onAction(const Action& action)
 {
 	std::cout << "Action received" << std::endl;
-	if(action.getSender() == &startState)
+	if(action.getSender() == &splashState)
+	{
+		if(action.getID() == SplashState::ActionID::FINISHED)
+		{
+			changeState(&startState);
+		}
+	}
+	else if(action.getSender() == &startState)
 	{
 		if(action.getID() == StartState::ActionID::CLOSE)
 		{

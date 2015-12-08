@@ -62,27 +62,27 @@ void StartState::render(sf::RenderWindow& window, const Resources& resources) co
 			}
 	);
 	sf::Text text;
-	text.setFont(resources.getFont());
+	text.setFont(resources.getLightFont());
 	text.setColor(sf::Color(32, 32, 32));
 	text.setRotation(0.f);
 
-	text.setCharacterSize(48);
+	text.setCharacterSize(64);
 
 	text.setString("Asterism");
-	text.setPosition(300, 180);
+	text.setPosition(300, 160);
 	window.draw(text);
 
 	text.setCharacterSize(24);
 
-	text.setString("[P]lay");
+	text.setString("[P] Play");
 	text.setPosition(300, 260);
 	window.draw(text);
 
-	text.setString("[E]ditor");
+	text.setString("[E] Editor");
 	text.setPosition(300, 300);
 	window.draw(text);
 
-	text.setString("E[x]it");
+	text.setString("[X] Exit");
 	text.setPosition(300, 340);
 	window.draw(text);
 

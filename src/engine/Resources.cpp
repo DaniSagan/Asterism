@@ -23,6 +23,10 @@ Resources::~Resources()
 
 void Resources::load()
 {
+	if(!lightFont.loadFromFile("res/font/Open_Sans/OpenSans-Light.ttf"))
+	{
+		throw std::runtime_error("Font not found");
+	}
 	if(!font.loadFromFile("res/font/Open_Sans/OpenSans-Regular.ttf"))
 	{
 		throw std::runtime_error("Font not found");
@@ -47,6 +51,11 @@ void Resources::load()
 		throw std::runtime_error("Texture not found");
 	}
 	textureAtlas.setSmooth(true);
+}
+
+const sf::Font& Resources::getLightFont() const
+{
+	return lightFont;
 }
 
 const sf::Font& Resources::getFont() const
