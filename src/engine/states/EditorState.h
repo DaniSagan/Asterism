@@ -10,6 +10,10 @@
 
 #include "../GameState.h"
 #include <SFML/Graphics.hpp>
+#include "../world/objects/ship/PieceFactory.h"
+#include <map>
+#include "../data/geometry.h"
+#include <functional>
 
 namespace ast
 {
@@ -29,8 +33,11 @@ public:
 		EXIT
 	};
 
+	void renderShip(sf::RenderWindow& window, const Resources& resources) const;
+
 protected:
 	sf::Vector2i cursorPosition;
+	std::map<sf::Vector2i, Piece, std::function<bool(const sf::Vector2i&, const sf::Vector2i&)>> pieces;
 };
 
 } /* namespace ast */

@@ -31,6 +31,27 @@ sf::Vector2f rotate(const sf::Vector2f v, float angle)
 	};
 }
 
+bool operator<(const sf::Vector2i& v1, const sf::Vector2i& v2)
+{
+	int l1 = pow(v1.x, 2) + pow(v1.y, 2);
+	int l2 = pow(v2.x, 2) + pow(v2.y, 2);
+	float a1 = atan2(v1.y, v1.x);
+	float a2 = atan2(v2.y, v2.x);
+	if(l1 == l2)
+	{
+		return a1 < a2;
+	}
+	else
+	{
+		return l1 < l2;
+	}
+}
+
+sf::IntRect getGridRect(int cellSize, const sf::Vector2i position)
+{
+	return sf::IntRect{position.x*cellSize, position.y*cellSize, cellSize, cellSize};
+}
+
 /*
  * geometry.cpp
  *

@@ -10,7 +10,8 @@
 namespace ast
 {
 
-EditorState::EditorState()
+EditorState::EditorState():
+		pieces([](const sf::Vector2i& v1, const sf::Vector2i& v2){return v1 < v2;})
 {
 	// TODO Auto-generated constructor stub
 
@@ -49,6 +50,12 @@ void EditorState::handleEvent(sf::Event& event)
 		{
 			cursorPosition += sf::Vector2i{1, 0};
 		}
+		else if(event.key.code == sf::Keyboard::P)
+		{
+			// Añadir una pieza
+			Piece piece = PieceFactory::getPiece(Piece::Type::FULL, static_cast<sf::Vector2f>(cursorPosition) * 32.f, 0);
+			pieces[cursorPosition] = piece;
+		}
 	}
 }
 
@@ -65,6 +72,9 @@ void EditorState::render(sf::RenderWindow& window,
 				sf::Vector2f{static_cast<float>(window.getSize().x), static_cast<float>(window.getSize().y)}
 			}
 	);
+
+	renderShip(window, resources);
+
 	sf::RectangleShape cursorRectangle;
 	cursorRectangle.setFillColor(sf::Color::Transparent);
 	cursorRectangle.setOutlineColor(sf::Color::Red);
@@ -92,6 +102,20 @@ void EditorState::render(sf::RenderWindow& window,
 	window.draw(text);
 
 	window.display();
+}
+
+void EditorState::renderShip(sf::RenderWindow& window,
+		const Resources& resources) const
+{
+	for(const auto& p: pieces)
+	{
+		sf::Sprite sprite;
+		sprite.setTexture(resources.getTextureAtlas());
+		sprite.setTextureRect(getGridRect(32, sf::Vector2i{0, 0}));
+		sprite.setOrigin(16.f, 16.f);
+		sprite.setPosition(static_cast<sf::Vector2f>(flipY(p.first) * 32));
+		window.draw(sprite);
+	}
 }
 
 } /* namespace ast */

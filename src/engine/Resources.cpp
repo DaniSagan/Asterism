@@ -78,4 +78,11 @@ const sf::Texture& Resources::getBgTexture() const
 	return bgTexture;
 }
 
+const sf::Texture& Resources::getTextureAtlas() const
+{
+	return textureAtlas;
+}
+
 } /* namespace ast */
+
+
